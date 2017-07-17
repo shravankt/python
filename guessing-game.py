@@ -1,6 +1,7 @@
 import random
 num = random.choice(xrange(1000, 9999)) 
 #print num
+# below function generates the list from entered number by user or computer generated number from rand function
 def num_list(num):
     i = 0
     num1 = []
