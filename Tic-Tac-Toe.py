@@ -1,7 +1,6 @@
-import time
-l1 = [0,0,0]
-l2 = [0,0,0]
-l3 = [0,0,0]
+l1 = ['x','0','0']
+l2 = ['0','0','0']
+l3 = ['0','0','0']
 game = [l1,l2,l3]
 choice = ['x','o']
 
@@ -28,8 +27,11 @@ def winner(board1):
 def check_value(ui):
     for i in range(3):
         for j in range(3):
-            if game[i][j] == ui:
+            if game[i][j] == ui[0][1]:
                 return ("Common!! Please Enter your choice for row,col that is empty or filled with zero '0'")
+                break
+            else:
+                return True
 
 print "Basic Rule of the Game:\n 1. Player 1 to use x and player 2 to use o\n 2. put your input in row,col i.e. 1,1 to put number in first box"
 #time.sleep(5)
@@ -37,13 +39,21 @@ print "Let's start:\n", (".\n".join(str(i) for i in game))
 print winner(game)
 loop = True
 while loop:
-    p1 = raw_input("Enter your choice:").split(",")
-    p1 = map(int, p1)
-    #print p1
-    i1 = p1[0]
-    i2 = p1[1]
-    #print i1
-    #print i2
-    game[i1].insert(i2,'x')
-    #print check_value(p1)
-    print game
+    p1s = raw_input("User1 Enter your choice:").split(",")
+    p1i = map(int, p1s)
+    #print check_value('x')
+    if game[p1i[0]-1][p1i[1]-1] == 'x' or game[p1i[0]-1][p1i[1]-1] == 'o':
+        print "Common!! Please Enter a valid choice for row,col that is empty or filled with zero '0'"
+    else:
+        game[p1i[0]-1][p1i[1]-1] = 'x'
+    print (".\n".join(str(i) for i in game))
+    print winner(game)
+    p2s = raw_input("User2 Enter your choice:").split(",")
+    p2i = map(int, p2s)
+    if game[p1i[0]-1][p1i[1]-1] == 'o' or game[p1i[0]-1][p1i[1]-1] == 'x':
+        print "Common!! Please Enter a valid choice for row,col that is empty or filled with zero '0'"
+    else:
+        game[p1i[0]-1][p1i[1]-1] = 'o'
+    print (".\n".join(str(i) for i in game))
+    print winner(game)
+    break
