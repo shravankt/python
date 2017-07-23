@@ -7,23 +7,40 @@ choice = ['x','o']
 def winner(board1):
     for i in range(3):
         if board1[i][0] == board1[i][1] == board1[i][2] == str(choice[0]):
-            return ('Winner is player:' +str(1))
+            #return ('Winner is player:' +str(1))
+            print "Winner is player:", choice[0]
+            return True
         elif board1[0][i] == board1[1][i] == board1[2][i] == str(choice[0]):
-            return ('Winner is player:' +str(1))
+            #return ('Winner is player:' +str(1))
+            print "Winner is player:", choice[0]
+            return True
         if board1[i][0] == board1[i][1] == board1[i][2] == str(choice[1]):
-            return ('Winner is player:' +str(2))
+            #return ('Winner is player:' +str(2))
+            print "Winner is player:", choice[1]
+            return True
         elif board1[0][i] == board1[1][i] == board1[2][i] == str(choice[1]):
-            return ('Winner is player:' +str(2))
+            #return ('Winner is player:' +str(2))
+            print "Winner is player:", choice[1]
+            return True
         if board1[0][0] == board1[1][1] == board1[2][2] == str(choice[0]):
-            return ('Winner is player:' +str(1))
+            #return ('Winner is player:' +str(1))
+            print "Winner is player:", choice[0]
+            return True
         elif board1[0][0] == board1[1][1] == board1[2][2] == str(choice[1]):
-            return ('Winner is player:' +str(2))
+            #return ('Winner is player:' +str(2))
+            print "Winner is player:", choice[1]
+            return True
         if board1[2][0] == board1[1][1] == board1[0][2] == str(choice[0]):
-            return ('Winner is player:' +str(1))
+            #return ('Winner is player:' +str(1))
+            print "Winner is player:", choice[0]
+            return True
         elif board1[2][0] == board1[1][1] == board1[0][2] == str(choice[1]):
-            return ('Winner is player:' +str(2))
+            #return ('Winner is player:' +str(2))
+            print "Winner is player:", choice[1]
+            return True
     else:
-        return ("it's a DRAW")
+        print "it's a DRAW"
+        return False
 def check_value(ui):
     for i in range(3):
         for j in range(3):
@@ -47,13 +64,17 @@ while loop:
     else:
         game[p1i[0]-1][p1i[1]-1] = 'x'
     print (".\n".join(str(i) for i in game))
-    print winner(game)
-    p2s = raw_input("User2 Enter your choice:").split(",")
-    p2i = map(int, p2s)
-    if game[p1i[0]-1][p1i[1]-1] == 'o' or game[p1i[0]-1][p1i[1]-1] == 'x':
-        print "Common!! Please Enter a valid choice for row,col that is empty or filled with zero '0'"
+    if winner(game) == True:
+        break
     else:
-        game[p1i[0]-1][p1i[1]-1] = 'o'
-    print (".\n".join(str(i) for i in game))
-    print winner(game)
-    break
+        p2s = raw_input("User2 Enter your choice:").split(",")
+        p2i = map(int, p2s)
+        if game[p2i[0]-1][p2i[1]-1] == 'o' or game[p2i[0]-1][p2i[1]-1] == 'x':
+            print "Common!! Please Enter a valid choice for row,col that is empty or filled with zero '0'"
+        else:
+            game[p2i[0]-1][p2i[1]-1] = 'o'
+        print (".\n".join(str(i) for i in game))
+        if winner(game) == True:
+            break
+        else:
+            continue
