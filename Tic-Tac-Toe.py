@@ -1,4 +1,4 @@
-l1 = ['x','0','0']
+l1 = ['0','0','0']
 l2 = ['0','0','0']
 l3 = ['0','0','0']
 game = [l1,l2,l3]
@@ -39,17 +39,9 @@ def winner(board1):
             print "Winner is player:", choice[1]
             return True
     else:
-        print "it's a DRAW"
+        #print "it's a DRAW"
         return False
-def check_value(ui):
-    for i in range(3):
-        for j in range(3):
-            if game[i][j] == ui[0][1]:
-                return ("Common!! Please Enter your choice for row,col that is empty or filled with zero '0'")
-                break
-            else:
-                return True
-
+    
 print "Basic Rule of the Game:\n 1. Player 1 to use x and player 2 to use o\n 2. put your input in row,col i.e. 1,1 to put number in first box"
 #time.sleep(5)
 print "Let's start:\n", (".\n".join(str(i) for i in game))
@@ -61,18 +53,22 @@ while loop:
     #print check_value('x')
     if game[p1i[0]-1][p1i[1]-1] == 'x' or game[p1i[0]-1][p1i[1]-1] == 'o':
         print "Common!! Please Enter a valid choice for row,col that is empty or filled with zero '0'"
+        continue
     else:
         game[p1i[0]-1][p1i[1]-1] = 'x'
     print (".\n".join(str(i) for i in game))
     if winner(game) == True:
         break
     else:
-        p2s = raw_input("User2 Enter your choice:").split(",")
-        p2i = map(int, p2s)
-        if game[p2i[0]-1][p2i[1]-1] == 'o' or game[p2i[0]-1][p2i[1]-1] == 'x':
-            print "Common!! Please Enter a valid choice for row,col that is empty or filled with zero '0'"
-        else:
-            game[p2i[0]-1][p2i[1]-1] = 'o'
+        while loop:
+            p2s = raw_input("User2 Enter your choice:").split(",")
+            p2i = map(int, p2s)
+            if game[p2i[0]-1][p2i[1]-1] == 'o' or game[p2i[0]-1][p2i[1]-1] == 'x':
+                print "Common!! Please Enter a valid choice for row,col that is empty or filled with zero '0'"
+                continue
+            else:
+                game[p2i[0]-1][p2i[1]-1] = 'o'
+                break
         print (".\n".join(str(i) for i in game))
         if winner(game) == True:
             break
